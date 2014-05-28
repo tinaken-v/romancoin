@@ -1,0 +1,5 @@
+cd romancoin/src/leveldb
+chmod +x build_detect_platform
+./build_detect_platform (ignore errors here)
+make libleveldb.a libmemenv.a
+cd ..
