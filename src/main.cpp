@@ -985,7 +985,7 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees, uint256 prevHash)
         {
                 nSubsidy = 5000000 * COIN;				
         }
-		else if(nHeight < 90720)      
+		else if(nHeight < 30240)      
         {
                 if(rand == 0)
 				{	
@@ -1026,24 +1026,10 @@ const int DAILY_BLOCKCOUNT =  4320;
 int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 {
     int64_t nRewardCoinYear;
-	int64_t nSubsidy;
+
     nRewardCoinYear = MAX_MINT_PROOF_OF_STAKE;
-	if(pindexBest->nHeight < 30240)
-	{
-    int64_t nSubsidy = nCoinAge * nRewardCoinYear * 104 / 365 / COIN;   //first week - 10% per week(not accounting compounding and stuff)
-	}
-	else if(pindexBest->nHeight < 60480)
-	{
-    int64_t nSubsidy = nCoinAge * nRewardCoinYear * 208 / 365 / COIN;   //second week
-	}
-	else if(pindexBest->nHeight < 90720)
-	{
-    int64_t nSubsidy = nCoinAge * nRewardCoinYear * 312 / 365 / COIN;   //third week
-	}
-	else if(pindexBest->nHeight > 90719)
-	{
-    int64_t nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;   //after 3rd week, 10% per year
-	}
+
+    int64_t nSubsidy = nCoinAge * nRewardCoinYear / 365 / COIN;
 	
 	
     if (fDebug && GetBoolArg("-printcreation"))
